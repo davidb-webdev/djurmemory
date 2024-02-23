@@ -1,10 +1,12 @@
 import { getAnimals } from "../services/animalServices";
 import "../styles/Grid.css";
 import { useState } from "react";
+import { Card } from "./Card";
+import { IAnimal } from "../models/IAnimal";
 
 export const Grid = () => {
   const numberOfPairs = 6;
-  const [animalArray, setAnimalArray] = useState([]);
+  const [animalArray, setAnimalArray] = useState<IAnimal[]>([]);
 
   const handleButtonClick = async () => {
     const response = await getAnimals(numberOfPairs);
@@ -18,7 +20,10 @@ export const Grid = () => {
       <div className="grid">
         {animalArray.map((animal) => {
           return (
-            <Card imageUrl={animal.url}></Card>
+            <>
+              <Card imageUrl={animal.url}></Card>
+              <Card imageUrl={animal.url}></Card>
+            </>
           );
         })}
       </div>
