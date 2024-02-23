@@ -1,22 +1,33 @@
-import { getAnimals } from "../services/animalServices";
-import "../styles/Grid.css";
-import { useState } from "react";
-import { Card } from "./Card";
-import { IAnimal } from "../models/IAnimal";
+import { getAnimals } from '../services/animalServices';
+import '../styles/Grid.css';
+import { useState } from 'react';
+import { Card } from './Card';
+import { IAnimal } from '../models/IAnimal';
 
 export const Grid = () => {
-  const numberOfPairs = 6;
+  const [number, setNumber] = useState('')
   const [animalArray, setAnimalArray] = useState<IAnimal[]>([]);
 
   const handleButtonClick = async () => {
-    const response = await getAnimals(numberOfPairs);
-    console.log(response.data);
-
+    const response = await getAnimals(number.toString());
     setAnimalArray(response.data);
   };
 
   return (
     <>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        handleButtonClick();
+        setNumber('');
+      }}>
+        <input 
+        type="number" 
+        placeholder='Pick amount of cards'
+        onChange={(e) => { setNumber(e.target.value) }}
+        value={number}
+        />
+        <button>Get cards</button>
+      </form>
       <div className="grid">
         {animalArray.map((animal) => {
           return (
@@ -27,7 +38,6 @@ export const Grid = () => {
           );
         })}
       </div>
-      <button onClick={handleButtonClick}>Get cards</button>
     </>
   );
 };
