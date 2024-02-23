@@ -29,7 +29,7 @@ h1 {
   padding: 0;
 }
 
-.card-container:hover > .card {
+.flipped {
   cursor: pointer;
   transform: rotateY(180deg) rotateZ(180deg);
   transition: transform 600ms ease-out;
@@ -44,8 +44,7 @@ h1 {
   backface-visibility: hidden;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(https://cdn2.thedogapi.com/images/rkeqWgq4Q_1280.jpg)
-
+  /* background-image: url(https://cdn2.thedogapi.com/images/rkeqWgq4Q_1280.jpg) */
 }
 
 .front-card {
